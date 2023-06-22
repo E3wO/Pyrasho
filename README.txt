@@ -1,0 +1,1 @@
+This README currently serves as a test to verify if connection to GitHub works.
