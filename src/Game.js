@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Phaser from 'phaser';
-import MainMenu from './components/MainMenu';
+import MainMenu from './scenes/MainMenu';
 import App from './App';
 
 const Game = () => {
