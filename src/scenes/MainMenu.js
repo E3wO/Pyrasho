@@ -1,9 +1,13 @@
 import React from 'react';
 import './MainMenu.css';
 
-const MainMenu = ({ onSignal }) => {
+const MenuButtons = ({ onSignal }) => {
   const handleStartGame = () => {
     onSignal('startgame');
+  };
+
+  const handleSettings = () => {
+    onSignal('opensettings');
   };
 
   return (
@@ -11,8 +15,11 @@ const MainMenu = ({ onSignal }) => {
       <button className="menu-button" onClick={handleStartGame}>
         Start Game
       </button>
+      <button className="menu-button" onClick={handleSettings}>
+        Settings
+      </button>
     </div>
   );
 };
 
-export default MainMenu;
+export default MenuButtons;
