@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-//import Phaser from 'phaser';
+import Phaser from 'phaser';
 import MainMenu from './scenes/MainMenu';
 import Settings from './scenes/Settings';
-import PlayScene from './scenes/PlayScene';
+import GameScene from './scenes/GameScene';
 
 const Game = () => {
   const [currentScreen, setCurrentScreen] = useState('mainmenu'); //Defaults to Main Menu on first init
@@ -13,11 +13,27 @@ const Game = () => {
 
   return (
     <div className="game-container">
-      {currentScreen === 'mainmenu' && <MainMenu onSignal={handleSignal} />}
-      {currentScreen === 'startgame' && <PlayScene onSignal={handleSignal} />}
-      {currentScreen === 'opensettings' && <Settings onSignal={handleSignal} />}
+      {currentScreen === 'mainmenu' && (
+        <div>
+          <MainMenu onSignal={handleSignal} />
+          {console.log('Rendering MainMenu')}
+        </div>
+      )}
+      {currentScreen === 'startgame' && (
+        <div>
+          <GameScene onSignal={handleSignal} />
+          {console.log('Rendering GameScene')}
+        </div>
+      )}
+      {currentScreen === 'opensettings' && (
+        <div>
+          <Settings onSignal={handleSignal} />
+          {console.log('Rendering Settings')}
+        </div>
+      )}
     </div>
   );
+  
 };
 
 export default Game;
