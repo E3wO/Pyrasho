@@ -1,3 +1,5 @@
+// Settings.js - Manages the settings scene; Allows users to configure game options
+
 import React from "react";
 import "./MainMenu.css";
 

@@ -1,3 +1,5 @@
+// MainMenu.js - Manages the main menu scene; Provides UI for starting the game
+
 import React from "react";
 import "./MainMenu.css";
 

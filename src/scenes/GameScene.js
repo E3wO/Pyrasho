@@ -1,3 +1,5 @@
+// GameScene.js - Represents the Phaser game scene; Handles gameplay, assets, and updates
+
 import React, { useEffect } from "react";
 import Phaser from "phaser";
 import MapLoader from "./MapLoader";

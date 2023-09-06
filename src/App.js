@@ -1,3 +1,5 @@
+// App.js - Main application container; Manages layout, state, and screens
+
 import React from "react";
 import Game from "./Game";
 

@@ -1,3 +1,5 @@
+// Game.js - Manages game logic and screen transitions; Acts as a mediator between scenes
+
 import React, { useState } from "react";
 import Phaser from "phaser";
 import MainMenu from "./scenes/MainMenu";
