@@ -1,4 +1,4 @@
-const mapToLoad = () => {
+function mapToLoad() {
   console.log("MapLoader")
   return("assets/ground.png")
 }
