@@ -1,9 +1,9 @@
-import React from 'react';
-import './MainMenu.css';
+import React from "react";
+import "./MainMenu.css";
 
 const MenuButtons = ({ onSignal }) => {
   const handleGoBack = () => {
-    onSignal('mainmenu');
+    onSignal("mainmenu");
   };
 
   return (

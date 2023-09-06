@@ -1,13 +1,13 @@
-import React from 'react';
-import './MainMenu.css';
+import React from "react";
+import "./MainMenu.css";
 
 const MenuButtons = ({ onSignal }) => {
   const handleStartGame = () => {
-    onSignal('startgame');
+    onSignal("startgame");
   };
 
   const handleSettings = () => {
-    onSignal('opensettings');
+    onSignal("opensettings");
   };
 
   return (
