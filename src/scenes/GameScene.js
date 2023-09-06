@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import Phaser from "phaser";
-import MapLoader from "./MapLoader";
+import {mapToLoad} from "./MapLoader";
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -10,7 +10,8 @@ class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("ground", "assets/ground.png");
+    const mapPath = mapToLoad();
+    this.load.image("ground", mapPath);
 
     console.log("Preloading in GameScene.js");
   }

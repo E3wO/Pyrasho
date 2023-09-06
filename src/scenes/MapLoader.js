@@ -1,12 +1,6 @@
-class MapLoader {
-  constructor(scene) {
-    this.scene = scene;
-  }
-
-  preload() {
-    this.scene.load.image("ground", "../assets/ground.png");
-    console.log("Preloading ground in MapLoader.js");
-  }
+const mapToLoad = () => {
+  console.log("MapLoader")
+  return("assets/ground.png")
 }
 
-export default MapLoader;
+export {mapToLoad}
