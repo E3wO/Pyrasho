@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { multiplier } from "../../config/gameConfig";
 
 export default class PlayerCharacter extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
@@ -24,7 +25,7 @@ export default class PlayerCharacter extends Phaser.Physics.Arcade.Sprite {
         down: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
     };
 
-    this.speed = 200; // Player speed
+    this.speed = 200 * multiplier; // Player speed
     
   }
 
