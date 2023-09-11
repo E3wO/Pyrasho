@@ -16,6 +16,7 @@ export default class PlayerCharacter extends Phaser.Physics.Arcade.Sprite {
     // Can now safely use "this" hereafter
     this.cursors = scene.input.keyboard.createCursorKeys();
 
+    // Setting keys for movement to WASD
     this.keys = {
         left: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A),
         right: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
@@ -23,7 +24,7 @@ export default class PlayerCharacter extends Phaser.Physics.Arcade.Sprite {
         down: this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
     };
 
-    this.speed = 200;
+    this.speed = 200; // Player speed
     
   }
 
