@@ -10,6 +10,11 @@ class GameScene extends Phaser.Scene {
     super("GameScene");
   }
 
+  init(data) {
+    this.onSignal = data.onSignal;
+}
+
+
   preload() {
     const mapPath = mapToLoad();
     this.load.image("ground", mapPath);
@@ -23,6 +28,11 @@ class GameScene extends Phaser.Scene {
     this.add.image(640, 360, "ground");
     console.log("Creating in GameScene.js");
 
+    const backbutton = this.add.text(1050, 40, "Back to Main Menu").setInteractive();
+    backbutton.on("pointerdown", function () {
+      this.onSignal("mainmenu");
+    }.bind(this));
+
     this.player = new PlayerCharacter(this, 100, 100);
   }
 
@@ -31,7 +41,7 @@ class GameScene extends Phaser.Scene {
   }
 }
 
-function PhaserGame() {
+function PhaserGame(props) {
   useEffect(() => {
     // Runs return on dismount, everything else on mount.
     const config = {
@@ -49,13 +59,14 @@ function PhaserGame() {
     };
 
     const game = new Phaser.Game(config);
+    game.scene.start('GameScene', { onSignal: props.onSignal });
 
     return () => {
       // Clean up resources if needed
       game.destroy();
       console.log("Destroyed in GameScene.js");
     };
-  }, []);
+  }, [props.onSignal]);
 
   return (
     <div id="phaser-game-container">
