@@ -13,8 +13,7 @@ class GameScene extends Phaser.Scene {
 
   init(data) {
     this.onSignal = data.onSignal;
-}
-
+  }
 
   preload() {
     const mapPath = mapToLoad();
@@ -28,7 +27,7 @@ class GameScene extends Phaser.Scene {
   create() {
     this.physics.world.setBounds(0, 0, width, height); // Set collision to edges of the screen
     this.ground = this.add.image(width / 2, height / 2, "ground"); // Adds ground texture and makes it centered
-    this.ground.setScale(multiplier)
+    this.ground.setScale(multiplier);
 
     this.wallGroup = this.physics.add.staticGroup();
 
@@ -39,13 +38,18 @@ class GameScene extends Phaser.Scene {
     }
     console.log("Creating in GameScene.js");
 
-    const backbutton = this.add.text(1050, 40, "Back to Main Menu").setInteractive();
-    backbutton.on("pointerdown", function () {
-      this.onSignal("mainmenu");
-    }.bind(this));
+    const backbutton = this.add
+      .text(1050, 40, "Back to Main Menu")
+      .setInteractive();
+    backbutton.on(
+      "pointerdown",
+      function () {
+        this.onSignal("mainmenu");
+      }.bind(this)
+    );
 
     this.player = new PlayerCharacter(this, 100, 100);
-    this.player.setScale(multiplier)
+    this.player.setScale(multiplier);
 
     this.physics.add.collider(this.player, this.wallGroup); // Makes player and walls collide
   }
@@ -55,30 +59,41 @@ class GameScene extends Phaser.Scene {
   }
 }
 
+let game; // Move this outside of the useEffect to retain the reference between renders
+
 function PhaserGame(props) {
   useEffect(() => {
-    // useEffect runs return on dismount, everything else on mount.
-    const config = {
-      type: Phaser.CANVAS,
-      width: width,
-      height: height,
-      scene: GameScene,
-      physics: {
-        default: "arcade",
-        arcade: {
-          gravity: { y: 0 },
-          debug: false, // set to true if you want to visualize the physics bodies
-        },
-      },
-    };
+    // Runs return on dismount, everything else on mount.
 
-    const game = new Phaser.Game(config);
-    game.scene.start('GameScene', { onSignal: props.onSignal });
+    if (game) {
+      // If game exists, just restart the GameScene
+      game.scene.restart("GameScene");
+    } else {
+      const config = {
+        type: Phaser.CANVAS,
+        width: width,
+        height: height,
+        scene: GameScene,
+        physics: {
+          default: "arcade",
+          arcade: {
+            gravity: { y: 0 },
+            debug: false, // set to true if you want to visualize the physics bodies
+          },
+        },
+      };
+
+      game = new Phaser.Game(config);
+      game.scene.start("GameScene", { onSignal: props.onSignal });
+    }
 
     return () => {
       // Clean up resources if needed
-      game.destroy();
-      console.log("Destroyed in GameScene.js");
+      if (game) {
+        game.destroy(true);
+        game = null;
+        console.log("Destroyed in GameScene.js");
+      }
     };
   }, [props.onSignal]);
 
