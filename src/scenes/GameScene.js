@@ -39,7 +39,7 @@ class GameScene extends Phaser.Scene {
     console.log("Creating in GameScene.js");
 
     const backbutton = this.add
-      .text(1050, 40, "Back to Main Menu")
+      .text((width / 16) * 11, 60, "Back to Main Menu")
       .setInteractive();
     backbutton.on(
       "pointerdown",
