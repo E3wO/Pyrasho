@@ -2,7 +2,7 @@
 
 import React from "react";
 import "./MainMenu.css";
-import ButtonComponent from "../components/gameplay/UI/ButtonComponent";
+import ButtonComponent from "../components/UI/ButtonComponent";
 
 const MenuButtons = ({ onSignal }) => {
   const handleGoBack = () => {
