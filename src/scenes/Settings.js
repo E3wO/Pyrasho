@@ -2,6 +2,7 @@
 
 import React from "react";
 import "./MainMenu.css";
+import ButtonComponent from "../components/gameplay/UI/ButtonComponent";
 
 const MenuButtons = ({ onSignal }) => {
   const handleGoBack = () => {
@@ -10,9 +11,7 @@ const MenuButtons = ({ onSignal }) => {
 
   return (
     <div className="main-menu">
-      <button className="menu-button" onClick={handleGoBack}>
-        Back
-      </button>
+      <ButtonComponent label="Back" onClick={handleGoBack} />
     </div>
   );
 };

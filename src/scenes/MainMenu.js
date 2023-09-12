@@ -2,6 +2,7 @@
 
 import React from "react";
 import "./MainMenu.css";
+import ButtonComponent from "../components/gameplay/UI/ButtonComponent";
 
 const MenuButtons = ({ onSignal }) => {
   const handleStartGame = () => {
@@ -14,12 +15,8 @@ const MenuButtons = ({ onSignal }) => {
 
   return (
     <div className="main-menu">
-      <button className="menu-button" onClick={handleStartGame}>
-        Start Game
-      </button>
-      <button className="menu-button" onClick={handleSettings}>
-        Settings
-      </button>
+      <ButtonComponent label="Start Game" onClick={handleStartGame} />
+      <ButtonComponent label="Settings" onClick={handleSettings} />
     </div>
   );
 };
