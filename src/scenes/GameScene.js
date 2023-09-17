@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Phaser from "phaser";
 import { mapToLoad } from "./MapLoader";
 import PlayerCharacter from "../components/gameplay/PlayerCharacter";
-import { width, height, multiplier } from "../config/gameConfig"; // Screen width, height, and multiplier
+import { width, height, multiplier, scale } from "../config/gameConfig"; // Screen width, height, and multiplier
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -20,6 +20,7 @@ class GameScene extends Phaser.Scene {
     this.load.image("ground", mapPath);
     this.load.image("player", "assets/player.png");
     this.load.image("wall", "assets/wall.png");
+    this.load.image("floor", "assets/floor1.png")
 
     console.log("Preloading in GameScene.js");
   }
@@ -29,13 +30,22 @@ class GameScene extends Phaser.Scene {
     this.ground = this.add.image(width / 2, height / 2, "ground"); // Adds ground texture and makes it centered
     this.ground.setScale(multiplier);
 
-    this.wallGroup = this.physics.add.staticGroup();
-
     const walls = width / (32 * multiplier);
+    const floorsRow = height / (32 * multiplier)
+    const floors = floorsRow
+
     for (let i = 0; i < walls; i++) {
-      const wallX = 16 + 32 * i;
-      this.wallGroup.create(wallX, 16, "wall");
+      const wallX = (16 * multiplier) + (32 * multiplier) * i;
+      this.seina = this.add.image(wallX, 16, "wall");
+      this.seina.setScale(scale)
+
+      for (let n = 1; n < floors; n++) {
+        const floorY = 16 + (32 * multiplier) * n;
+        this.floor = this.add.image(wallX, floorY, "floor");
+        this.floor.setScale(scale)
+      }
     }
+
     console.log("Creating in GameScene.js");
 
     const backbutton = this.add
@@ -48,10 +58,10 @@ class GameScene extends Phaser.Scene {
       }.bind(this)
     );
 
-    this.player = new PlayerCharacter(this, 100, 100);
-    this.player.setScale(multiplier);
+    this.player = new PlayerCharacter(this, 100 * multiplier, 100 * multiplier);
+    this.player.setScale(scale);
 
-    this.physics.add.collider(this.player, this.wallGroup); // Makes player and walls collide
+    //this.physics.add.collider(this.player, this.object); // Makes player and desired objects collide
   }
 
   update() {
@@ -59,7 +69,7 @@ class GameScene extends Phaser.Scene {
   }
 }
 
-let game; // Move this outside of the useEffect to retain the reference between renders
+let game; // Retain the reference between renders
 
 function PhaserGame(props) {
   useEffect(() => {
