@@ -1,7 +1,7 @@
 // GameScene.js - Represents the Phaser game scene; Handles gameplay, assets, and updates
 
 import Phaser from "phaser";
-import { mapToLoad } from "./MapLoader";
+import { mapToLoad } from "../components/utils/MapLoader";
 import PlayerCharacter from "../components/gameplay/PlayerCharacter";
 import { width, height, multiplier, scale } from "../config/gameConfig"; // Screen width, height, and multiplier
 
