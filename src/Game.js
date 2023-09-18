@@ -13,7 +13,7 @@ const Game = () => {
 
   useEffect(() => {
     const gameConfig = {
-      type: Phaser.CANVAS,
+      type: Phaser.WEBGL,
       width: width,
       height: height,
       parent: "phaser-container",

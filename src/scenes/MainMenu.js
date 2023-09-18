@@ -11,8 +11,8 @@ class MainMenu extends BaseMenuScene {
   create() {
     this.createBackground();
 
-    this.createButton(width / 2, height / 2 - (100 * multiplier), "Start Game", "GameScene");
     this.createButton(width / 2, height / 2 - (50 * multiplier), "Settings", "Settings");
+    this.createButton(width / 2, height / 2 - (100 * multiplier), "Start Game", "GameScene");
   }
 }
 
