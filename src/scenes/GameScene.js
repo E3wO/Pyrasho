@@ -30,16 +30,16 @@ class GameScene extends Phaser.Scene {
     this.ground = this.add.image(width / 2, height / 2, "ground"); // Adds ground texture and makes it centered
     this.ground.setScale(multiplier);
 
-    const walls = width / (32 * multiplier); // Determine screen width in blocks
-    const floors = height / (32 * multiplier) //Determine screen height in blocks
+    const bWidth = width / (32 * multiplier); // Determine screen width in blocks
+    const bHeight = height / (32 * multiplier) //Determine screen height in blocks
 
-    for (let i = 0; i < walls; i++) {
+    for (let i = 0; i < bWidth; i++) {
       const wallX = (16 * multiplier) + (32 * multiplier) * i;
       const wallY = (16 * multiplier)
       this.seina = this.add.image(wallX, wallY, "wall");
       this.seina.setScale(scale)
 
-      for (let n = 1; n < floors; n++) {
+      for (let n = 1; n < bHeight; n++) {
         const floorY = wallY + (32 * multiplier) * n;
         this.floor = this.add.image(wallX, floorY, "floor");
         this.floor.setScale(scale)
