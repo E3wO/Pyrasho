@@ -25,7 +25,7 @@ class BaseMenuScene extends Phaser.Scene {
 
 
     // Listen for pointer events on the button
-    button.on("pointerdown", () => {
+    button.on("pointerup", () => {
       this.scene.start(targetScene);
     });
 
