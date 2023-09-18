@@ -1,24 +1,29 @@
 // MainMenu.js - Manages the main menu scene; Provides UI for starting the game
 
-import React from "react";
-import "./MainMenu.css";
-import ButtonComponent from "../components/UI/ButtonComponent";
+import Phaser from "phaser";
+import { width, height } from "../config/gameConfig";
 
-const MenuButtons = ({ onSignal }) => {
-  const handleStartGame = () => {
-    onSignal("startgame");
-  };
+class MainMenu extends Phaser.Scene {
+  constructor() {
+    super("MainMenu");
+  }
 
-  const handleSettings = () => {
-    onSignal("opensettings");
-  };
+  preload() {
+    this.load.image("bg", "assets/mainmenu.png");
+  }
 
-  return (
-    <div className="main-menu">
-      <ButtonComponent label="Start Game" onClick={handleStartGame} />
-      <ButtonComponent label="Settings" onClick={handleSettings} />
-    </div>
-  );
-};
+  create() {
+    this.add.image(width / 2, height / 2, "bg");
 
-export default MenuButtons;
+    let startButton = this.add.text(width / 2, height / 2 - 100, "Start Game").setInteractive();
+    startButton.on("pointerdown", () => {
+      this.scene.start("GameScene");
+    });
+    let settingsButton = this.add.text(width / 2, height / 2 - 50, "Settings").setInteractive();
+    settingsButton.on("pointerdown", () => {
+      this.scene.start("Settings");
+    });
+  }
+}
+
+export default MainMenu;

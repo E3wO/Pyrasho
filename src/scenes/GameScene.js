@@ -1,6 +1,5 @@
 // GameScene.js - Represents the Phaser game scene; Handles gameplay, assets, and updates
 
-import React, { useEffect } from "react";
 import Phaser from "phaser";
 import { mapToLoad } from "./MapLoader";
 import PlayerCharacter from "../components/gameplay/PlayerCharacter";
@@ -21,8 +20,6 @@ class GameScene extends Phaser.Scene {
     this.load.image("player", "assets/player.png");
     this.load.image("wall", "assets/wall.png");
     this.load.image("floor", "assets/floor1.png")
-
-    console.log("Preloading in GameScene.js");
   }
 
   create() {
@@ -54,7 +51,7 @@ class GameScene extends Phaser.Scene {
     backbutton.on(
       "pointerdown",
       function () {
-        this.onSignal("mainmenu");
+        this.scene.start("MainMenu")
       }.bind(this)
     );
 
@@ -69,49 +66,4 @@ class GameScene extends Phaser.Scene {
   }
 }
 
-let game; // Retain the reference between renders
-
-function PhaserGame(props) {
-  useEffect(() => {
-    // Runs return on dismount, everything else on mount.
-
-    if (game) {
-      // If game exists, just restart the GameScene
-      game.scene.restart("GameScene");
-    } else {
-      const config = {
-        type: Phaser.CANVAS,
-        width: width,
-        height: height,
-        scene: GameScene,
-        physics: {
-          default: "arcade",
-          arcade: {
-            gravity: { y: 0 },
-            debug: false, // set to true if you want to visualize the physics bodies
-          },
-        },
-      };
-
-      game = new Phaser.Game(config);
-      game.scene.start("GameScene", { onSignal: props.onSignal });
-    }
-
-    return () => {
-      // Clean up resources if needed
-      if (game) {
-        game.destroy(true);
-        game = null;
-        console.log("Destroyed in GameScene.js");
-      }
-    };
-  }, [props.onSignal]);
-
-  return (
-    <div id="phaser-game-container">
-      {/* Your game canvas will be inserted here */}
-    </div>
-  );
-}
-
-export default PhaserGame;
+export default GameScene;
